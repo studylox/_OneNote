@@ -1,3 +1,8 @@
+# Project description
+Read and write with Microsoft OneNote
+Microsoft Graph.NET MVC Project
+This project is the entry of hack-together
+
 # .NET Core MVC (Model - View - Controller) web app connected to Microsoft Graph
 
 This is a template for .NET Core MVC (Model - View - Controller) web app that connects to Microsoft Graph.

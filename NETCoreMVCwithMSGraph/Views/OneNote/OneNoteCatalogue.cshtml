@@ -1,0 +1,98 @@
+﻿@using NETCoreMVCwithMSGraph.Controllers
+
+@model List<NotebookViewModel>
+@{
+    ViewData["Title"] = "Conference Page";
+
+
+    string controller = $"{ViewContext.RouteData.Values["controller"]}";
+    int number = Model.Count;
+}
+<style>
+    img{
+        position:absolute;
+        top:70px;
+        right:60px
+    }
+    .list-group-item {
+  height: 80px;
+  width:700px;
+  line-height: 80px;
+    }
+
+    a {
+        color: black;
+        text-decoration: none;
+    }
+
+    body {
+        background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/pipes.png');
+    }
+
+</style>
+<div class="mb-3">
+
+  
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNotebookModal">
+        Create Notebook
+    </button>
+
+   
+    <div class="modal fade" id="addNotebookModal" tabindex="-1" aria-labelledby="addNotebookModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNotebookModalLabel">Create Notebook</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-controller="OneNote" asp-action="AddNewNotebook">
+                        <div class="mb-3">
+                            <label for="notebookName" class="form-label">Notebook Name</label>
+                            <input type="text" class="form-control" id="notebookName" name="displayName" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@if (Model.Count == 0)
+{
+    <p>You have no notebooks.</p>
+}
+else
+{
+    <ul>
+        <p> @number Notebooks in total</p>
+        
+        @foreach (var notebook in Model)
+        {
+          
+
+           <li class="list-group-item">
+  <div class="d-flex justify-content-between align-items-center">
+                  
+                    <a asp-area="" asp-controller="Section" asp-action="OneNoteSectionsCatalogue" asp-route-id="@notebook.Id">@notebook.Name</a>
+
+
+    <span>@notebook.CreatedDateTime.ToString("yyyy-MM-dd HH:mm")</span>
+   
+  </div>
+</li>
+
+            
+            
+        }
+    </ul>
+   
+}
+
+<div>
+    <img src="https://images.pexels.com/photos/3987020/pexels-photo-3987020.jpeg?auto=compress&cs=tinysrgb&w=600" />
+</div>
+
+
+

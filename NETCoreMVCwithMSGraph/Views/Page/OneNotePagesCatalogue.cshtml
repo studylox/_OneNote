@@ -1,0 +1,86 @@
+﻿@using NETCoreMVCwithMSGraph.Controllers
+
+@model List<PageViewModel>
+@{
+	string controller = $"{ViewContext.RouteData.Values["controller"]}";
+
+	
+	var viewContext = ViewContext;
+
+	
+	var routeData = viewContext.RouteData;
+
+	
+	var sectionId = routeData.Values["Id"];
+
+}
+<style>
+    body {
+        background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/pipes.png');
+      
+     
+    }
+
+  
+</style>
+<body>
+	<div class="container mt-5">
+		<h1 class="mb-4"> Page List</h1>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-page-modal">
+			Create Page
+		</button>
+
+		
+		<div class="card mt-4">
+			<div class="card-header">
+				<h5>Page Directory</h5>
+			</div>
+			<div class="card-body">
+				<ul class="list-group" id="page-list">
+					
+				
+
+					@if (Model == null)
+					{
+						<p>Model is null</p>
+					}
+					else if (Model.Count == 0)
+					{
+						<p>You have no pages.</p>
+					}
+					else
+					{
+						<ul>
+							<p> @Model.Count Pages in total</p>
+
+
+
+							@foreach (var pagebook in Model)
+							{
+
+
+								<li class="list-group-item">
+									<div class="d-flex justify-content-between align-items-center">
+										<a>@pagebook.Name</a>
+										<span>@pagebook.CreatedDateTime.ToString("yyyy-MM-dd HH:mm")</span>
+
+									</div>
+								</li>
+
+
+
+							}
+
+						</ul>
+					}
+				</ul>
+			</div>
+		</div>
+
+		
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	</body>
+
+	
